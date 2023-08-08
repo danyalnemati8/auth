@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const userRoutes = rquire("./../domains/user")
+const userRoutes = require("./../domains/user")
 
 router.use("/user", userRoutes);
 

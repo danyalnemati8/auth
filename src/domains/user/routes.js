@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { createNewUser } = require("./controller")
-// Signup
+const { createNewUser } = require("./controller");
 
-router.post("/signup", async(req, res) => {
+// Signup
+router.post("/signup", async (req, res) => {
     try {
         let { name, email, password } = req.body;
         name = name.trim();
@@ -11,17 +11,17 @@ router.post("/signup", async(req, res) => {
         password = password.trim();
 
         if (!(name && email && password)) {
-            throw Error("Empty input fields!");
+            throw new Error("Empty input fields!");
         } else if (!/^[a-zA-Z]*$/.test(name)) {
-            throw Error("Invalid name entered");
-        } else if (!/^[\-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            throw Error("Invalid email entered");
-        } else if (password.legnth < 8) {
-            throw Error("Passw2ord is too short!");
+            throw new Error("Invalid name entered");
+        } else if (!/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            throw new Error("Invalid email entered");
+        } else if (password.length < 8) {
+            throw new Error("Password is too short!");
         } else {
-            //goode credentials, create new user
+            // Good credentials, create new user
             const newUser = await createNewUser({
-                naem,
+                name,
                 email,
                 password,
             });
@@ -31,4 +31,5 @@ router.post("/signup", async(req, res) => {
         res.status(400).send(error.message);
     }
 });
+
 module.exports = router;
