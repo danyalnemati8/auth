@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const { createNewUser } = require("./controller")
 // Signup
 
 router.post("/signup", async(req, res) => {
@@ -19,9 +19,16 @@ router.post("/signup", async(req, res) => {
         } else if (password.legnth < 8) {
             throw Error("Passw2ord is too short!");
         } else {
-            
+            //goode credentials, create new user
+            const newUser = await createNewUser({
+                naem,
+                email,
+                password,
+            });
+            res.status(200).json(newUser);
         }
     } catch (error) {
-        
+        res.status(400).send(error.message);
     }
 });
+module.exports = router;
