@@ -10,5 +10,6 @@ const creatNewUser =  async (data) => {
         if (existingUser) {
             throw Error("User with the provided email already exists");
         }
+        //hash password
     } catch (error) {}
 };
