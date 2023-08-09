@@ -2,6 +2,22 @@ const express = require("express");
 const router = express.Router();
 const { createNewUser } = require("./controller");
 
+//signin
+
+router.post("/", async (req, res) => {
+    try {
+        let { email, password } = req.body;
+        email = email.trim();
+        password = password.trim();
+
+        if(!email && !password) {
+            throw Error("empty credentials");
+        }
+    } catch(error){
+        
+    }
+});
+
 // Signup
 router.post("/signup", async (req, res) => {
     try {
