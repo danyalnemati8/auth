@@ -1,5 +1,5 @@
 const User = require("./model");
-const { hashData } = require("./../../util/hashdata");
+const { hashData, verifyHashedData } = require("./../../util/hashdata");
 
 
 const authenticator = async (data) => {
@@ -11,6 +11,10 @@ const authenticator = async (data) => {
             throw Error ("invalid email credentials")
         }
         const hashedPassword = fetchedUser.password;
+        const passwordMatch =  await verifyHashedData(password, hashedPassword);
+        if (!passwordMatch) {
+            throw Error ("password is incorrect")
+        }
 
     } catch (error) {
 
