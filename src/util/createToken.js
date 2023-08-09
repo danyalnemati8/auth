@@ -4,7 +4,7 @@ const { TOKEN_KEY, TOKEN_EXPIRY} = process.env;
 const createToken = async (
     tokenData, 
     tokenKey = TOKEN_KEY,
-    expiesIn = TOKEN_EXPIRY
+    expiresIn = TOKEN_EXPIRY
 ) => {
   try {
     const token = await jwt.sign(tokenData, tokenKey, {
