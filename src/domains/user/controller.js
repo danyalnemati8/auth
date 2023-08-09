@@ -1,8 +1,9 @@
 const User = require("./model");
 const { hashData, verifyHashedData } = require("./../../util/hashdata");
+const createToken =  require("./../../util/createToken")
 
 
-const authenticator = async (data) => {
+const authenticateUser = async (data) => {
     try {
         const { email, password } = data;
 
@@ -17,9 +18,14 @@ const authenticator = async (data) => {
         }
 
         // create user token 
-        
-    } catch (error) {
+        const tokenData = { userId: fetchedUser._id, email};
+        const token = await createToken(tokenData);
+        //assign user token
+        fetchedUser.token = token;
+        return fetchedUser;
 
+    } catch (error) {
+        throw error;
     }
 
 };
@@ -48,4 +54,4 @@ const createNewUser = async (data) => {
     }
 };
 
-module.exports = { createNewUser };
+module.exports = { createNewUser, authenticateUser };
