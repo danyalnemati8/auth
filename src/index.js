@@ -6,4 +6,4 @@ const startApp = () => {
         console.log('Auth Backend running on port ${PORT}');
     });
 };
-startApp(); //andy comment
+startApp(); 
