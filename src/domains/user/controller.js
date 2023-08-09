@@ -1,6 +1,22 @@
 const User = require("./model");
 const { hashData } = require("./../../util/hashdata");
 
+
+const authenticator = async (data) => {
+    try {
+        const { email, password } = data;
+
+        const fetchedUser = await User.findOne({email});
+        if (!fetchedUser) {
+            throw Error ("invalid email credentials")
+        }
+        const hashedPassword = fetchedUser.password;
+
+    } catch (error) {
+
+    }
+
+};
 const createNewUser = async (data) => {
     try {
         const { name, email, password } = data;
