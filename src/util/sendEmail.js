@@ -19,7 +19,7 @@ transporter.verify((error, success) => {
     }
 });
 
-const sendEmail = async (mailtOptions) => {
+const sendEmail = async (mailOptions) => {
     try {
         await transporter.sendMail(mailOptions);
         return;
