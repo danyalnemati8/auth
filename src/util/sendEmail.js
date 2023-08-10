@@ -4,7 +4,7 @@ let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook,com",
     auth: {
         user: AUTH_EMAIL,
-        pass: AUTH_PASS
+        pass: AUTH_PASS,
     },
 });
 
